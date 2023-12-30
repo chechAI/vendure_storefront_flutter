@@ -1,0 +1,301 @@
+# export const CURRENT_USER_FRAGMENT = gql`
+    fragment CurrentUser on CurrentUser {
+        id
+        identifier
+        channels {
+            id
+            code
+            token
+            permissions
+        }
+    }
+# `;
+
+# export const ASSET_FRAGMENT = gql`
+    fragment Asset on Asset {
+        id
+        width
+        height
+        name
+        preview
+        focalPoint {
+            x
+            y
+        }
+    }
+# `;
+
+# export const CART_FRAGMENT = gql`
+    fragment Cart on Order {
+        id
+        code
+        state
+        active
+        updatedAt
+        orderPlacedAt
+        lines {
+            id
+            featuredAsset {
+                ...Asset
+            }
+            unitPrice
+            unitPriceWithTax
+            quantity
+            linePriceWithTax
+            discountedLinePriceWithTax
+            productVariant {
+                id
+                name
+            }
+            discounts {
+                amount
+                amountWithTax
+                description
+                adjustmentSource
+                type
+            }
+        }
+        totalQuantity
+        subTotal
+        subTotalWithTax
+        total
+        totalWithTax
+        shipping
+        shippingWithTax
+        shippingLines {
+            priceWithTax
+            shippingMethod {
+                id
+                code
+                name
+                description
+            }
+        }
+        discounts {
+            amount
+            amountWithTax
+            description
+            adjustmentSource
+            type
+        }
+    }
+    # ${ASSET_FRAGMENT}
+# `;
+
+# export const COUNTRY_FRAGMENT = gql`
+    fragment Country on Country {
+        id
+        code
+        name
+        enabled
+    }
+# `;
+
+# export const ORDER_ADDRESS_FRAGMENT = gql`
+    fragment OrderAddress on OrderAddress {
+        fullName
+        company
+        streetLine1
+        streetLine2
+        city
+        province
+        postalCode
+        country
+        phoneNumber
+    }
+# `;
+
+# export const ADDRESS_FRAGMENT = gql`
+    fragment Address on Address {
+        id
+        fullName
+        company
+        streetLine1
+        streetLine2
+        city
+        province
+        postalCode
+        country {
+            id
+            code
+            name
+        }
+        phoneNumber
+        defaultShippingAddress
+        defaultBillingAddress
+    }
+# `;
+
+# export const ERROR_RESULT_FRAGMENT = gql`
+    fragment ErrorResult on ErrorResult {
+        errorCode
+        message
+    }
+# `;
+
+# export const PRODUCT_FIELDS = gql`
+  fragment ProductFields on Product {
+    id
+    name
+    slug
+    assets {
+      id
+      preview
+    #   thumbnail
+    }
+    facetValues {
+      code
+      name
+      facet {
+        code
+        name
+      }
+    }
+    featuredAsset {
+      id
+      preview
+    #   thumbnail
+    }
+    description
+    variants {
+      id
+      name
+      priceWithTax
+      productId
+      stockLevel
+      options {
+        id
+        name
+        group {
+          id
+          name
+        }
+      }
+      assets {
+        id
+        preview
+        # thumbnail
+      }
+      featuredAsset {
+        id
+        preview
+        # thumbnail
+      }
+      customFields {
+        maxPerOrder
+      }
+    }
+    customFields {
+      metaTitle
+      metaDescription
+      keywords
+    }
+  }
+# `;
+
+# export const COLLECTION_FIELDS = gql`
+  fragment CollectionFields on Collection {
+    id
+    name
+    slug
+    description
+    parent {
+      id
+      name
+      slug
+    }
+    children {
+      id
+      name
+      slug
+    }
+    featuredAsset {
+      preview
+    #   thumbnail
+    }
+    productVariants {
+      items {
+        product {
+          id
+        }
+      }
+    }
+  }
+# `;
+
+# export const ORDER_FIELDS = gql`
+  fragment OrderFields on Order {
+    id
+    code
+    state
+    active
+    totalWithTax
+    subTotalWithTax
+    shippingWithTax
+    customer {
+      id
+      firstName
+      lastName
+      phoneNumber
+      emailAddress
+    }
+    shippingAddress {
+      fullName
+      company
+      streetLine1
+      streetLine2
+      city
+      postalCode
+      country
+    }
+    billingAddress {
+      fullName
+      company
+      streetLine1
+      streetLine2
+      city
+      postalCode
+      country
+    }
+    shippingLines {
+      shippingMethod {
+        id
+        code
+        name
+      }
+      priceWithTax
+    }
+    lines {
+      id
+      quantity
+      linePriceWithTax
+      featuredAsset {
+        id
+        preview
+        # thumbnail
+      }
+      productVariant {
+        id
+        sku
+        name
+        priceWithTax
+      }
+    }
+    taxSummary {
+      taxRate
+      taxTotal
+      taxBase
+    }
+    payments {
+      id
+      state
+      errorMessage
+      metadata
+    }
+    discounts {
+      description
+      amountWithTax
+    }
+    couponCodes
+  }
+# `;

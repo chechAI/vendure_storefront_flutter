@@ -1,0 +1,24 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          scalars:
+            Money:
+              type: double
+            ID:
+              type: String
+            JSON:
+              type: Map<String, dynamic>
+            Upload:
+              type: any
+            URL:
+              type: String
+            DateTime:
+              type: DateTime
+              fromJsonFunctionName: dateTimeFromJson
+              toJsonFunctionName: dateTimeToJson
+              import: /gql/scalars.dart
+          clients:
+            - graphql
+            - graphql_flutter

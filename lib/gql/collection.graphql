@@ -1,0 +1,95 @@
+# export const GET_COLLECTIONS = gql`
+    query GetCollections($options: CollectionListOptions) {
+        collections(options: $options) {
+            totalItems
+            items {
+                id
+                slug
+                name
+                parent {
+                    id
+                    slug
+                    name
+                }
+                featuredAsset {
+                    id
+                    preview
+                }
+                position
+                productVariants {
+                    totalItems
+                }
+                filters {
+                    code
+                    args {
+                        name
+                        value
+                    }
+                }
+                children {
+                    id
+                    name
+                    slug
+                    parent {
+                        id
+                        slug
+                        name
+                    }
+                    featuredAsset {
+                        id
+                        preview
+                    }
+                    position
+                    productVariants {
+                        totalItems
+                    }
+                    filters {
+                        code
+                        args {
+                            name
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+# `;
+
+# export const GET_COLLECTION = gql`
+    query GetCollection($id: ID, $slug: String) {
+        collection(id: $id, slug: $slug) {
+            id
+            slug
+            name
+            featuredAsset {
+                ...Asset
+            }
+            breadcrumbs {
+                id
+                slug
+                name
+            }
+            productVariants {
+				totalItems
+			}
+            children {
+                id
+                slug
+                name
+                featuredAsset {
+                    ...Asset
+                }
+                breadcrumbs {
+                    id
+                    slug
+                    name
+                }
+                productVariants {
+                    totalItems
+                }
+            }
+        }
+    }
+#     ${ASSET_FRAGMENT}
+# `;

@@ -1,0 +1,29 @@
+overwrite: true
+config:
+  strict: true
+documents:
+  - "./lib/**/*.graphql"
+  # - "./lib/**/*.{ts,tsx}"
+  - "!lib/data/generated/*"
+generates:
+  # ./lib/data/models/admin_models.dart:
+  #   schema:
+  #     - "http://localhost:3000/admin-api"
+  #   plugins:
+  #     - flutter-freezed
+  # ./lib/data/models/shop_models.dart:
+  #   schema:
+  #     - "http://localhost:3000/shop-api"
+  #   plugins:
+  #     - flutter-freezed
+  # ./lib/data/schema/admin-schema.graphql:
+  #   schema:
+  #     - "http://localhost:3000/admin-api"
+  #   plugins:
+  #     - schema-ast
+  ./lib/gql/shop-schema.graphql:
+    schema:
+      - "http://localhost:3000/shop-api"
+    plugins:
+      - schema-ast
+      
